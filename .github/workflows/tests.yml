@@ -1,0 +1,26 @@
+name: testes
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  pipeline:
+    name: DSP / rastreador / física (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Dependências (sem interface nem hardware)
+        run: pip install "numpy>=2.0" "scipy>=1.13" "pytest>=8"
+      - name: Testes de validação contra o simulador físico
+        run: python -m pytest -s -v

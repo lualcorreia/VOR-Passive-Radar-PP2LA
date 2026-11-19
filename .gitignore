@@ -1,0 +1,25 @@
+# Ambiente Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+
+# Saídas do radar (gravações IQ e logs de detecções ficam só na máquina)
+logs/
+*.sigmf-data
+*.sigmf-meta
+*.cu8
+*.cf32
+
+# Estado local da interface
+config.json
+
+# Editores / sistema
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

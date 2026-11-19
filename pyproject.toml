@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vorradar"
+dynamic = ["version"]
+description = "Radar passivo bistático por efeito Doppler usando radiofaróis VOR e RTL-SDR"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Lucas Alexandre Gama Correia (PP2LA)" }]
+requires-python = ">=3.10"
+keywords = ["sdr", "rtl-sdr", "passive radar", "bistatic radar", "VOR", "doppler", "dsp"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Communications :: Ham Radio",
+    "Intended Audience :: Science/Research",
+]
+dependencies = [
+    "numpy>=2.0",
+    "scipy>=1.13",
+    "PyQt6>=6.6",
+    "pyqtgraph>=0.13.7",
+    "pyrtlsdr>=0.3.0",
+    "pyrtlsdrlib>=0.0.7; sys_platform == 'win32' or sys_platform == 'darwin'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8"]
+
+[project.scripts]
+vorradar = "vorradar.gui:main"
+
+[project.urls]
+Repository = "https://github.com/lualcorreia/VOR-Passive-Radar-PP2LA"
+
+[tool.setuptools]
+packages = ["vorradar"]
+
+[tool.setuptools.dynamic]
+version = { attr = "vorradar.__version__" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-ra"
